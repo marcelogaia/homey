@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: build/dev/Dockerfile
+    ports :
+      - "8080:8080"
+    volumes:
+      - .:/app
+      - cargo-cache:/usr/local/cargo
+    # command: cargo run
+volumes:
+  cargo-cache:

@@ -1,9 +1,10 @@
 /// Fetches room temperature from a Smart Thermometer
+#[allow(dead_code)]
 struct FetchRoomTemperature {
     fail: bool,
 }
 
-
+#[allow(dead_code)]
 impl FetchRoomTemperature {
 
     fn new(fail: bool) -> Self {
