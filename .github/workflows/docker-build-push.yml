@@ -49,4 +49,4 @@ jobs:
           push: true
           tags: |
             ${{ matrix.image }}:${{ matrix.tag }}
-            ${{ matrix.image }}:${{ env.version }}
+            ${{ matrix.name == 'release' && format('{0}:{1}', matrix.image, env.version) }}
