@@ -40,6 +40,13 @@ jobs:
         if: matrix.name == 'release' && startsWith(github.ref, 'refs/tags/')
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
+      - name: Set tags
+        run: |
+          echo "tags=${{ matrix.image }}:${{ matrix.tag }}" >> $GITHUB_ENV
+          if [[ "${{ matrix.name }}" == "release" ]]; then
+            echo "tags=${{ matrix.image }}:${{ matrix.tag }},${{ matrix.image }}:${{ env.version }}" >> $GITHUB_ENV
+          fi
+
       - name: Build and push Docker image
         if: (matrix.name == 'nightly' && github.ref == 'refs/heads/main') || (matrix.name == 'release' && startsWith(github.ref, 'refs/tags/'))
         uses: docker/build-push-action@v5
@@ -47,6 +54,4 @@ jobs:
           context: .
           file: ./build/prod/Dockerfile
           push: true
-          tags: |
-            ${{ matrix.image }}:${{ matrix.tag }}
-            ${{ matrix.name == 'release' && format('{0}:{1}', matrix.image, env.version) }}
+          tags: ${{ env.tags }}
