@@ -1,0 +1,1 @@
+pub mod test_sqlite_temperature_gateway;

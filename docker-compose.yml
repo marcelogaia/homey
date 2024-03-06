@@ -10,5 +10,14 @@ services:
     volumes:
       - .:/app
       - cargo-cache:/usr/local/cargo
+  home-assistant:
+    image: homeassistant/home-assistant:latest
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /run/dbus:/run/dbus:ro
 volumes:
   cargo-cache:

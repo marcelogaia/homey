@@ -1,43 +1,19 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug Cargo",
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'homey'",
-            "cargo": {
-                "args": [
-                    "build",
-                    "--bin=homey",
-                    "--package=homey"
-                ],
-                "filter": {
-                    "name": "homey",
-                    "kind": "bin"
-                }
-            },
+            "program": "${workspaceFolder}/target/debug/homey",
             "args": [],
             "cwd": "${workspaceFolder}"
         },
         {
+            "name": "Debug Cargo Test",
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'homey'",
-            "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--bin=homey",
-                    "--package=homey"
-                ],
-                "filter": {
-                    "name": "homey",
-                    "kind": "bin"
-                }
-            },
+            "program": "${workspaceFolder}/target/debug/homey",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
